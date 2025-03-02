@@ -36,3 +36,4 @@ uvicorn
 langserve
 sse_starlette
 yt_dlp
+pysqlite3-binary
