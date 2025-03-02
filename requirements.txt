@@ -36,5 +36,4 @@ uvicorn
 langserve
 sse_starlette
 yt_dlp
-sqlite3
 langchain-chroma
