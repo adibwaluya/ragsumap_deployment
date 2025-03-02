@@ -1,8 +1,8 @@
 import streamlit as st
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
-# from langchain_chroma import Chroma
-from langchain.vectorstores.chroma import Chroma
+from langchain_chroma import Chroma
+# from langchain.vectorstores.chroma import Chroma
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -19,7 +19,17 @@ from dotenv import load_dotenv
 import sqlite3
 import sys
 sys.modules["pysqlite3"] = sqlite3
-#sys.modules['sqlite3'] = import('pysqlite3')
+import subprocess
+
+
+# Ensure latest SQLite version is installed
+try:
+    subprocess.run(["pip", "install", "--upgrade", "pysqlite3-binary"], check=True)
+except Exception as e:
+    print(f"SQLite upgrade failed: {e}")
+
+# Print SQLite version to verify
+print(f"SQLite version: {sqlite3.sqlite_version}")
 
 load_dotenv()
 
