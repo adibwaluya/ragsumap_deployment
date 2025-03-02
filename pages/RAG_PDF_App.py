@@ -16,9 +16,6 @@ from dotenv import load_dotenv
 # __import__('pysqlite3-binary')
 # import sys
 # sys.modules['sqlite3'] = sys.modules.pop('pysqlite3-binary')
-import pysqlite3
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3-binary')
 import sqlite3
 import sys
 sys.modules["pysqlite3"] = sqlite3
@@ -27,24 +24,12 @@ import subprocess
 
 # Ensure latest SQLite version is installed
 try:
-    subprocess.run(["pip", "install", "pysqlite3-binary"], check=True)
+    subprocess.run(["pip", "install", "--upgrade", "pysqlite3-binary"], check=True)
 except Exception as e:
     print(f"SQLite upgrade failed: {e}")
 
 # Print SQLite version to verify
-current_version = sqlite3.sqlite_version
 print(f"SQLite version: {sqlite3.sqlite_version}")
-
-# Check if SQLite version is less than required (3.35)
-if tuple(map(int, current_version.split('.'))) < (3, 35):
-    print("SQLite version is outdated. Installing pysqlite3-binary...")
-    subprocess.run(["pip", "install", "pysqlite3-binary"], check=True)
-    
-    # Re-import sqlite3 after installation
-    import sqlite3
-    print(f"SQLite version after installation: {sqlite3.sqlite_version}")
-else:
-    print("SQLite version is sufficient.")
 
 load_dotenv()
 
