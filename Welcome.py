@@ -1,6 +1,6 @@
 import streamlit as st
 
-# Welcome Page for Apps' information
+## Welcome Page for Apps' information
 st.set_page_config(page_title = "Multipage GenAI Application", layout = "wide")
 st.title("Welcome to Multipage GenAI Application!")
 st.sidebar.success("Select a page above")
