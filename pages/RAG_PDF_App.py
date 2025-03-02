@@ -15,13 +15,13 @@ import os
 from dotenv import load_dotenv
 __import__('pysqlite3')
 import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+#sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # import sqlite3
 # import sys
 # sys.modules["pysqlite3"] = sqlite3
 # import subprocess
 
-current_version = sqlite3.sqlite_version
+#current_version = sqlite3.sqlite_version
 
 # Ensure latest SQLite version is installed
 # try:
