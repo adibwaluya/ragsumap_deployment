@@ -13,13 +13,13 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 import os
 from dotenv import load_dotenv
-# __import__('pysqlite3-binary')
-# import sys
-# sys.modules['sqlite3'] = sys.modules.pop('pysqlite3-binary')
-import sqlite3
+__import__('pysqlite3')
 import sys
-sys.modules["pysqlite3"] = sqlite3
-import subprocess
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+# import sqlite3
+# import sys
+# sys.modules["pysqlite3"] = sqlite3
+# import subprocess
 
 current_version = sqlite3.sqlite_version
 
@@ -29,22 +29,22 @@ current_version = sqlite3.sqlite_version
 # except Exception as e:
 #     print(f"SQLite upgrade failed: {e}")
 
-if tuple(map(int, current_version.split('.'))) < (3, 35):
-    print("SQLite version is outdated. Installing pysqlite3-binary...")
-    subprocess.run(["pip", "install", "pysqlite3-binary"], check=True)
+# if tuple(map(int, current_version.split('.'))) < (3, 35):
+#     print("SQLite version is outdated. Installing pysqlite3-binary...")
+#     subprocess.run(["pip", "install", "pysqlite3-binary"], check=True)
     
-    # Re-import sqlite3 after installation
-    import sqlite3
-    print(f"SQLite version after installation: {sqlite3.sqlite_version}")
-else:
-    print("SQLite version is sufficient.")
+#     # Re-import sqlite3 after installation
+#     import sqlite3
+#     print(f"SQLite version after installation: {sqlite3.sqlite_version}")
+# else:
+#     print("SQLite version is sufficient.")
 
 # Print SQLite version to verify
-print(f"SQLite version: {sqlite3.sqlite_version}")
+# print(f"SQLite version: {sqlite3.sqlite_version}")
 
 load_dotenv()
 
-print(sqlite3.sqlite_version)
+# print(sqlite3.sqlite_version)
 
 # Streamlit config
 st.set_page_config(page_title="RAG PDF Chat", layout="wide")
