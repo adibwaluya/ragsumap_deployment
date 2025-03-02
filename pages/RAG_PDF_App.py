@@ -12,6 +12,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 import os
 from dotenv import load_dotenv
+import sqlite3
+import pysqlite3 as sqlite3
 
 load_dotenv()
 
