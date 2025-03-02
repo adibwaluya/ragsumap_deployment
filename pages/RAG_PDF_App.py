@@ -141,7 +141,7 @@ if api_key:
             st.write("Assistant:", response["answer"])
 
     # Add a link to the chat history page
-    st.page_link("pages/RAG_chat_history.py", label="View Chat History 📜")
+    st.page_link("pages/RAG_Chat_History.py", label="View Chat History 📜")
 
 else:
     st.warning("Please enter your Groq API Key")
