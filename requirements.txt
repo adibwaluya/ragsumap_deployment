@@ -38,4 +38,3 @@ sse_starlette
 yt_dlp
 sqlite3
 langchain-chroma
-pysqlite3-binary
