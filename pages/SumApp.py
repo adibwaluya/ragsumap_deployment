@@ -40,6 +40,9 @@ if groq_api_key:
                     # load the site or youtube data
                     if "youtube.com" in generic_url:
                         loader = YoutubeLoader.from_youtube_url(generic_url, add_video_info = False)
+                        docs = loader.load()
+                        # Extract the text content correctly
+                        text = "\n".join([doc.page_content for doc in docs])
                     else:
                         # hit the url and server requires headers
                         loader = UnstructuredURLLoader(
@@ -49,11 +52,12 @@ if groq_api_key:
                                 "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
                             }
                         )
-                    docs = loader.load()
+                        docs = loader.load()
+                        text = "\n".join([doc.page_content for doc in docs])
 
                     # Chain for summarization
                     chain = load_summarize_chain(llm, chain_type = "stuff", prompt = prompt)
-                    output_summary = chain.run(docs)
+                    output_summary = chain.run(text)
 
                     st.success(output_summary)
             except Exception as e:
